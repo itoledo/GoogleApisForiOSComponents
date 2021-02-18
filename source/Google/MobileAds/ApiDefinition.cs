@@ -266,10 +266,10 @@ namespace Google.MobileAds {
 		[Export ("adViewDidReceiveAd:")]
 		void DidReceiveAd (BannerView view);
 
-		[EventArgs ("BannerViewError")]
-		[EventName ("ReceiveAdFailed")]
-		[Export ("adView:didFailToReceiveAdWithError:")]
-		void DidFailToReceiveAd (BannerView view, RequestError error);
+		//[EventArgs ("BannerViewError")]
+		//[EventName ("ReceiveAdFailed")]
+		//[Export ("adView:didFailToReceiveAdWithError:")]
+		//void DidFailToReceiveAd (BannerView view, RequestError error);
 
 		[EventArgs ("BannerViewE")]
 		[EventName ("ImpressionRecorded")]
@@ -378,10 +378,10 @@ namespace Google.MobileAds {
 		[Export ("interstitialDidReceiveAd:")]
 		void DidReceiveAd (Interstitial ad);
 
-		[EventArgs ("InterstitialDidFailToReceiveAdWithError")]
-		[EventName ("ReceiveAdFailed")]
-		[Export ("interstitial:didFailToReceiveAdWithError:")]
-		void DidFailToReceiveAd (Interstitial sender, RequestError error);
+		//[EventArgs ("InterstitialDidFailToReceiveAdWithError")]
+		//[EventName ("ReceiveAdFailed")]
+		//[Export ("interstitial:didFailToReceiveAdWithError:")]
+		//void DidFailToReceiveAd (Interstitial sender, RequestError error);
 
 		[EventArgs ("InterstitialE")]
 		[Export ("interstitialWillPresentScreen:")]
@@ -549,21 +549,21 @@ namespace Google.MobileAds {
 		void TagForChildDirectedTreatment (bool childDirectedTreatment);
 	}
 
-	[DisableDefaultCtor]
-	[BaseType (typeof (NSError), Name = "GADRequestError")]
-	interface RequestError {
-		// extern NSString *const kGADErrorDomain __attribute__((visibility("default")));
-		[Internal]
-		[Field ("kGADErrorDomain", "__Internal")]
-		NSString _ErrorDomain { get; }
+	//[DisableDefaultCtor]
+	//[BaseType (typeof (NSError), Name = "GADRequestError")]
+	//interface RequestError {
+	//	// extern NSString *const kGADErrorDomain __attribute__((visibility("default")));
+	//	[Internal]
+	//	[Field ("kGADErrorDomain", "__Internal")]
+	//	NSString _ErrorDomain { get; }
 
-		[Static]
-		[Wrap ("_ErrorDomain.ToString ()")]
-		string ErrorDomain { get; }
+	//	[Static]
+	//	[Wrap ("_ErrorDomain.ToString ()")]
+	//	string ErrorDomain { get; }
 
-		[Export ("initWithDomain:code:userInfo:")]
-		IntPtr Constructor (NSString appDomain, nint code, NSDictionary userInfo);
-	}
+	//	[Export ("initWithDomain:code:userInfo:")]
+	//	IntPtr Constructor (NSString appDomain, nint code, NSDictionary userInfo);
+	//}
 
 	// @interface GADAdNetworkResponseInfo : NSObject
 	[BaseType (typeof(NSObject), Name = "GADAdNetworkResponseInfo")]
@@ -627,61 +627,61 @@ namespace Google.MobileAds {
 	}
 
 	// @interface GADRewardBasedVideoAd : NSObject
-	[Obsolete ("Use RewardedAd instead. Google AdMob publishers, follow instructions here: " +
-		   "https://googlemobileadssdk.page.link/admob-ios-rewarded-migration. " +
-		   "Google Ad Manager publishers, follow instructions here: " +
-		   "https://googlemobileadssdk.page.link/admanager-ios-rewarded-migration.")]
-	[DisableDefaultCtor]
-	[BaseType (typeof (NSObject),
-		Name = "GADRewardBasedVideoAd",
-		Delegates = new string [] { "Delegate" },
-		Events = new Type [] { typeof (RewardBasedVideoAdDelegate) })]
-	interface RewardBasedVideoAd {
-		// @property (nonatomic, weak) id<GADRewardBasedVideoAdDelegate> _Nullable delegate;
-		[NullAllowed]
-		[Export ("delegate", ArgumentSemantic.Weak)]
-		IRewardBasedVideoAdDelegate Delegate { get; set; }
+	//[Obsolete ("Use RewardedAd instead. Google AdMob publishers, follow instructions here: " +
+	//	   "https://googlemobileadssdk.page.link/admob-ios-rewarded-migration. " +
+	//	   "Google Ad Manager publishers, follow instructions here: " +
+	//	   "https://googlemobileadssdk.page.link/admanager-ios-rewarded-migration.")]
+	//[DisableDefaultCtor]
+	//[BaseType (typeof (NSObject),
+	//	Name = "GADRewardBasedVideoAd",
+	//	Delegates = new string [] { "Delegate" },
+	//	Events = new Type [] { typeof (RewardBasedVideoAdDelegate) })]
+	//interface RewardBasedVideoAd {
+	//	// @property (nonatomic, weak) id<GADRewardBasedVideoAdDelegate> _Nullable delegate;
+	//	[NullAllowed]
+	//	[Export ("delegate", ArgumentSemantic.Weak)]
+	//	IRewardBasedVideoAdDelegate Delegate { get; set; }
 
-		// @property (readonly, getter = isReady, assign, nonatomic) BOOL ready;
-		[Export ("ready")]
-		bool IsReady { [Bind ("isReady")] get; }
+	//	// @property (readonly, getter = isReady, assign, nonatomic) BOOL ready;
+	//	[Export ("ready")]
+	//	bool IsReady { [Bind ("isReady")] get; }
 
-		// @property(nonatomic, readonly, copy, GAD_NULLABLE) NSString *adNetworkClassName;
-		[NullAllowed]
-		[Export ("adNetworkClassName")]
-		string AdNetworkClassName { get; }
+	//	// @property(nonatomic, readonly, copy, GAD_NULLABLE) NSString *adNetworkClassName;
+	//	[NullAllowed]
+	//	[Export ("adNetworkClassName")]
+	//	string AdNetworkClassName { get; }
 
-		// @property(nonatomic, copy, GAD_NULLABLE) NSString *userIdentifier;
-		[NullAllowed]
-		[Export ("userIdentifier")]
-		string UserIdentifier { get; }
+	//	// @property(nonatomic, copy, GAD_NULLABLE) NSString *userIdentifier;
+	//	[NullAllowed]
+	//	[Export ("userIdentifier")]
+	//	string UserIdentifier { get; }
 
-		// @property (nonatomic, copy, nullable) NSString* customRewardString;
-		[NullAllowed]
-		[Export ("customRewardString")]
-		string CustomRewardString { get; set; }
+	//	// @property (nonatomic, copy, nullable) NSString* customRewardString;
+	//	[NullAllowed]
+	//	[Export ("customRewardString")]
+	//	string CustomRewardString { get; set; }
 
-		// @property (readonly, nonatomic) NSDictionary<GADAdMetadataKey,id> * _Nullable adMetadata;
-		[NullAllowed, Export ("adMetadata")]
-		NSDictionary<NSString, NSObject> AdMetadata { get; }
+	//	// @property (readonly, nonatomic) NSDictionary<GADAdMetadataKey,id> * _Nullable adMetadata;
+	//	[NullAllowed, Export ("adMetadata")]
+	//	NSDictionary<NSString, NSObject> AdMetadata { get; }
 
-		// +(GADRewardBasedVideoAd *)sharedInstance;
-		[Static]
-		[Export ("sharedInstance")]
-		RewardBasedVideoAd SharedInstance { get; }
+	//	// +(GADRewardBasedVideoAd *)sharedInstance;
+	//	[Static]
+	//	[Export ("sharedInstance")]
+	//	RewardBasedVideoAd SharedInstance { get; }
 
-		// -(void)loadRequest:(GADRequest *)request withAdUnitID:(NSString *)adUnitID;
-		[Export ("loadRequest:withAdUnitID:")]
-		void LoadRequest (Request request, string adUnitId);
+	//	// -(void)loadRequest:(GADRequest *)request withAdUnitID:(NSString *)adUnitID;
+	//	[Export ("loadRequest:withAdUnitID:")]
+	//	void LoadRequest (Request request, string adUnitId);
 
-		// -(void)presentFromRootViewController:(UIViewController *)viewController;
-		[Export ("presentFromRootViewController:")]
-		void Present (UIViewController fromRootViewController);
+	//	// -(void)presentFromRootViewController:(UIViewController *)viewController;
+	//	[Export ("presentFromRootViewController:")]
+	//	void Present (UIViewController fromRootViewController);
 
-		[Obsolete ("Use Present method instead. This will be removed in future versions.")]
-		[Wrap ("Present (viewController)")]
-		void PresentFromRootViewController (UIViewController viewController);
-	}
+	//	[Obsolete ("Use Present method instead. This will be removed in future versions.")]
+	//	[Wrap ("Present (viewController)")]
+	//	void PresentFromRootViewController (UIViewController viewController);
+	//}
 
 	interface IRewardBasedVideoAdDelegate {
 	}
@@ -692,62 +692,62 @@ namespace Google.MobileAds {
 	[BaseType (typeof (NSObject), Name = "GADRewardBasedVideoAdDelegate")]
 	interface RewardBasedVideoAdDelegate {
 		// - (void)rewardBasedVideoAd:(GADRewardBasedVideoAd *)rewardBasedVideoAd didRewardUserWithReward:(GADAdReward*)reward;
-		[Abstract]
-		[EventArgs ("RewardBasedVideoAdReward")]
-		[EventName ("UserRewarded")]
-		[Export ("rewardBasedVideoAd:didRewardUserWithReward:")]
-		void DidRewardUser (RewardBasedVideoAd rewardBasedVideoAd, AdReward reward);
+		//[Abstract]
+		//[EventArgs ("RewardBasedVideoAdReward")]
+		//[EventName ("UserRewarded")]
+		//[Export ("rewardBasedVideoAd:didRewardUserWithReward:")]
+		//void DidRewardUser (RewardBasedVideoAd rewardBasedVideoAd, AdReward reward);
 
 		// @optional -(void)rewardBasedVideoAd:(GADRewardBasedVideoAd *)rewardBasedVideoAd didFailToLoadwithError:(NSError *)error;
-		[EventArgs ("RewardBasedVideoAdError")]
-		[EventName ("FailedToLoad")]
-		[Export ("rewardBasedVideoAd:didFailToLoadWithError:")]
-		void DidFailToLoad (RewardBasedVideoAd rewardBasedVideoAd, NSError error);
+		//[EventArgs ("RewardBasedVideoAdError")]
+		//[EventName ("FailedToLoad")]
+		//[Export ("rewardBasedVideoAd:didFailToLoadWithError:")]
+		//void DidFailToLoad (RewardBasedVideoAd rewardBasedVideoAd, NSError error);
 
 		// @optional -(void)rewardBasedVideoAdDidReceiveAd:(GADRewardBasedVideoAd *)rewardBasedVideoAd;
-		[EventArgs ("RewardBasedVideoAd")]
-		[EventName ("AdReceived")]
-		[Export ("rewardBasedVideoAdDidReceiveAd:")]
-		void DidReceiveAd (RewardBasedVideoAd rewardBasedVideoAd);
+		//[EventArgs ("RewardBasedVideoAd")]
+		//[EventName ("AdReceived")]
+		//[Export ("rewardBasedVideoAdDidReceiveAd:")]
+		//void DidReceiveAd (RewardBasedVideoAd rewardBasedVideoAd);
 
 		// @optional -(void)rewardBasedVideoAdDidOpen:(GADRewardBasedVideoAd *)rewardBasedVideoAd;
-		[EventArgs ("RewardBasedVideoAd")]
-		[EventName ("Opened")]
-		[Export ("rewardBasedVideoAdDidOpen:")]
-		void DidOpen (RewardBasedVideoAd rewardBasedVideoAd);
+		//[EventArgs ("RewardBasedVideoAd")]
+		//[EventName ("Opened")]
+		//[Export ("rewardBasedVideoAdDidOpen:")]
+		//void DidOpen (RewardBasedVideoAd rewardBasedVideoAd);
 
 		// @optional -(void)rewardBasedVideoAdDidStartPlaying:(GADRewardBasedVideoAd *)rewardBasedVideoAd;
-		[EventArgs ("RewardBasedVideoAd")]
-		[EventName ("PlayingStarted")]
-		[Export ("rewardBasedVideoAdDidStartPlaying:")]
-		void DidStartPlaying (RewardBasedVideoAd rewardBasedVideoAd);
+		//[EventArgs ("RewardBasedVideoAd")]
+		//[EventName ("PlayingStarted")]
+		//[Export ("rewardBasedVideoAdDidStartPlaying:")]
+		//void DidStartPlaying (RewardBasedVideoAd rewardBasedVideoAd);
 
 		// - (void)rewardBasedVideoAdDidCompletePlaying:(GADRewardBasedVideoAd *)rewardBasedVideoAd;
-		[EventArgs ("RewardBasedVideoAd")]
-		[EventName ("PlayingCompleted")]
-		[Export ("rewardBasedVideoAdDidCompletePlaying:")]
-		void DidCompletePlaying (RewardBasedVideoAd rewardBasedVideoAd);
+		//[EventArgs ("RewardBasedVideoAd")]
+		//[EventName ("PlayingCompleted")]
+		//[Export ("rewardBasedVideoAdDidCompletePlaying:")]
+		//void DidCompletePlaying (RewardBasedVideoAd rewardBasedVideoAd);
 
 		// @optional -(void)rewardBasedVideoAdDidClose:(GADRewardBasedVideoAd *)rewardBasedVideoAd;
-		[EventArgs ("RewardBasedVideoAd")]
-		[EventName ("Closed")]
-		[Export ("rewardBasedVideoAdDidClose:")]
-		void DidClose (RewardBasedVideoAd rewardBasedVideoAd);
+		//[EventArgs ("RewardBasedVideoAd")]
+		//[EventName ("Closed")]
+		//[Export ("rewardBasedVideoAdDidClose:")]
+		//void DidClose (RewardBasedVideoAd rewardBasedVideoAd);
 
 		// @optional -(void)rewardBasedVideoAdWillLeaveApplication:(GADRewardBasedVideoAd *)rewardBasedVideoAd;
-		[EventArgs ("RewardBasedVideoAd")]
-		[Export ("rewardBasedVideoAdWillLeaveApplication:")]
-		void WillLeaveApplication (RewardBasedVideoAd rewardBasedVideoAd);
+		//[EventArgs ("RewardBasedVideoAd")]
+		//[Export ("rewardBasedVideoAdWillLeaveApplication:")]
+		//void WillLeaveApplication (RewardBasedVideoAd rewardBasedVideoAd);
 
 		// @optional -(void)rewardBasedVideoAdMetadataDidChange:(GADRewardBasedVideoAd * _Nonnull)rewardBasedVideoAd;
-		[EventArgs ("RewardBasedVideoAd")]
-		[EventName ("MetadataChanged")]
-		[Export ("rewardBasedVideoAdMetadataDidChange:")]
-		void MetadataDidChange (RewardBasedVideoAd rewardBasedVideoAd);
+		//[EventArgs ("RewardBasedVideoAd")]
+		//[EventName ("MetadataChanged")]
+		//[Export ("rewardBasedVideoAdMetadataDidChange:")]
+		//void MetadataDidChange (RewardBasedVideoAd rewardBasedVideoAd);
 	}
 
 	// typedef void (^GADRewardedAdLoadCompletionHandler)(GADRequestError * _Nullable);
-	delegate void RewardedAdLoadCompletionHandler ([NullAllowed] RequestError error);
+	// delegate void RewardedAdLoadCompletionHandler ([NullAllowed] RequestError error);
 
 	// @interface GADRewardedAd : NSObject
 	[BaseType (typeof (NSObject),
@@ -760,10 +760,10 @@ namespace Google.MobileAds {
 		IntPtr Constructor (string adUnitId);
 
 		// -(void)loadRequest:(GADRequest * _Nullable)request completionHandler:(GADRewardedAdLoadCompletionHandler _Nullable)completionHandler;
-		[Async]
-		[Export ("loadRequest:completionHandler:")]
-		void LoadRequest ([NullAllowed] Request request, [NullAllowed] RewardedAdLoadCompletionHandler completionHandler);
-
+		//[Async]
+		//[Export ("loadRequest:completionHandler:")]
+		//void LoadRequest ([NullAllowed] Request request, [NullAllowed] RewardedAdLoadCompletionHandler completionHandler);
+		
 		// @property (readonly, nonatomic) NSString * _Nonnull adUnitID;
 		[Export ("adUnitID")]
 		string AdUnitId { get; }
@@ -1060,229 +1060,229 @@ namespace Google.MobileAds {
 	}
 
 	// @interface GADUnifiedNativeAd : NSObject
-	[BaseType (typeof (NSObject),
-		   Name = "GADUnifiedNativeAd",
-		   Delegates = new [] { "Delegate", "UnconfirmedClickDelegate" },
-		   Events = new [] { typeof (UnifiedNativeAdDelegate), typeof (UnifiedNativeAdUnconfirmedClickDelegate) })]
-	interface UnifiedNativeAd {
-		// @property (readonly, copy, nonatomic) NSString * _Nullable headline;
-		[NullAllowed]
-		[Export ("headline")]
-		string Headline { get; }
+	//[BaseType (typeof (NSObject),
+	//	   Name = "GADUnifiedNativeAd",
+	//	   Delegates = new [] { "Delegate", "UnconfirmedClickDelegate" },
+	//	   Events = new [] { typeof (UnifiedNativeAdDelegate), typeof (UnifiedNativeAdUnconfirmedClickDelegate) })]
+	//interface UnifiedNativeAd {
+	//	// @property (readonly, copy, nonatomic) NSString * _Nullable headline;
+	//	[NullAllowed]
+	//	[Export ("headline")]
+	//	string Headline { get; }
 
-		// @property (readonly, copy, nonatomic) NSString * _Nullable callToAction;
-		[NullAllowed]
-		[Export ("callToAction")]
-		string CallToAction { get; }
+	//	// @property (readonly, copy, nonatomic) NSString * _Nullable callToAction;
+	//	[NullAllowed]
+	//	[Export ("callToAction")]
+	//	string CallToAction { get; }
 
-		// @property (readonly, nonatomic, strong) GADNativeAdImage * _Nullable icon;
-		[NullAllowed]
-		[Export ("icon", ArgumentSemantic.Strong)]
-		NativeAdImage Icon { get; }
+	//	// @property (readonly, nonatomic, strong) GADNativeAdImage * _Nullable icon;
+	//	[NullAllowed]
+	//	[Export ("icon", ArgumentSemantic.Strong)]
+	//	NativeAdImage Icon { get; }
 
-		// @property (readonly, copy, nonatomic) NSString * _Nullable body;
-		[NullAllowed]
-		[Export ("body")]
-		string Body { get; }
+	//	// @property (readonly, copy, nonatomic) NSString * _Nullable body;
+	//	[NullAllowed]
+	//	[Export ("body")]
+	//	string Body { get; }
 
-		// @property (readonly, nonatomic, strong) NSArray<GADNativeAdImage *> * _Nullable images;
-		[NullAllowed]
-		[Export ("images", ArgumentSemantic.Strong)]
-		NativeAdImage [] Images { get; }
+	//	// @property (readonly, nonatomic, strong) NSArray<GADNativeAdImage *> * _Nullable images;
+	//	[NullAllowed]
+	//	[Export ("images", ArgumentSemantic.Strong)]
+	//	NativeAdImage [] Images { get; }
 
-		// @property (readonly, copy, nonatomic) NSDecimalNumber * _Nullable starRating;
-		[NullAllowed]
-		[Export ("starRating", ArgumentSemantic.Copy)]
-		NSDecimalNumber StarRating { get; }
+	//	// @property (readonly, copy, nonatomic) NSDecimalNumber * _Nullable starRating;
+	//	[NullAllowed]
+	//	[Export ("starRating", ArgumentSemantic.Copy)]
+	//	NSDecimalNumber StarRating { get; }
 
-		// @property (readonly, copy, nonatomic) NSString * _Nullable store;
-		[NullAllowed]
-		[Export ("store")]
-		string Store { get; }
+	//	// @property (readonly, copy, nonatomic) NSString * _Nullable store;
+	//	[NullAllowed]
+	//	[Export ("store")]
+	//	string Store { get; }
 
-		// @property (readonly, copy, nonatomic) NSString * _Nullable price;
-		[NullAllowed]
-		[Export ("price")]
-		string Price { get; }
+	//	// @property (readonly, copy, nonatomic) NSString * _Nullable price;
+	//	[NullAllowed]
+	//	[Export ("price")]
+	//	string Price { get; }
 
-		// @property (readonly, copy, nonatomic) NSString * _Nullable advertiser;
-		[NullAllowed]
-		[Export ("advertiser")]
-		string Advertiser { get; }
+	//	// @property (readonly, copy, nonatomic) NSString * _Nullable advertiser;
+	//	[NullAllowed]
+	//	[Export ("advertiser")]
+	//	string Advertiser { get; }
 
-		// @property(nonatomic, readonly, nonnull) GADMediaContent *mediaContent;
-		[Export ("mediaContent")]
-		MediaContent MediaContent { get; }
+	//	// @property(nonatomic, readonly, nonnull) GADMediaContent *mediaContent;
+	//	[Export ("mediaContent")]
+	//	MediaContent MediaContent { get; }
 
-		// @property (nonatomic, weak) id<GADUnifiedNativeAdDelegate> _Nullable delegate;
-		[NullAllowed]
-		[Export ("delegate", ArgumentSemantic.Weak)]
-		IUnifiedNativeAdDelegate Delegate { get; set; }
+	//	// @property (nonatomic, weak) id<GADUnifiedNativeAdDelegate> _Nullable delegate;
+	//	[NullAllowed]
+	//	[Export ("delegate", ArgumentSemantic.Weak)]
+	//	IUnifiedNativeAdDelegate Delegate { get; set; }
 
-		// @property (nonatomic, weak) UIViewController * _Nullable rootViewController;
-		[NullAllowed]
-		[Export ("rootViewController", ArgumentSemantic.Weak)]
-		UIViewController RootViewController { get; set; }
+	//	// @property (nonatomic, weak) UIViewController * _Nullable rootViewController;
+	//	[NullAllowed]
+	//	[Export ("rootViewController", ArgumentSemantic.Weak)]
+	//	UIViewController RootViewController { get; set; }
 
-		// @property (readonly, copy, nonatomic) NSDictionary<NSString *,id> * _Nullable extraAssets;
-		[NullAllowed]
-		[Export ("extraAssets", ArgumentSemantic.Copy)]
-		NSDictionary<NSString, NSObject> ExtraAssets { get; }
+	//	// @property (readonly, copy, nonatomic) NSDictionary<NSString *,id> * _Nullable extraAssets;
+	//	[NullAllowed]
+	//	[Export ("extraAssets", ArgumentSemantic.Copy)]
+	//	NSDictionary<NSString, NSObject> ExtraAssets { get; }
 
-		// @property (readonly, nonatomic) GADResponseInfo * _Nonnull responseInfo;
-		[Export ("responseInfo")]
-		ResponseInfo ResponseInfo { get; }
+	//	// @property (readonly, nonatomic) GADResponseInfo * _Nonnull responseInfo;
+	//	[Export ("responseInfo")]
+	//	ResponseInfo ResponseInfo { get; }
 
-		// @property (copy, nonatomic) GADPaidEventHandler _Nullable paidEventHandler;
-		[NullAllowed]
-		[Export ("paidEventHandler", ArgumentSemantic.Copy)]
-		PaidEventHandler PaidEventHandler { get; set; }
+	//	// @property (copy, nonatomic) GADPaidEventHandler _Nullable paidEventHandler;
+	//	[NullAllowed]
+	//	[Export ("paidEventHandler", ArgumentSemantic.Copy)]
+	//	PaidEventHandler PaidEventHandler { get; set; }
 
-		// @property(nonatomic, readonly, getter=isCustomMuteThisAdAvailable) BOOL customMuteThisAdAvailable;
-		[Export ("isCustomMuteThisAdAvailable")]
-		bool IsCustomMuteThisAdAvailable { get; }
+	//	// @property(nonatomic, readonly, getter=isCustomMuteThisAdAvailable) BOOL customMuteThisAdAvailable;
+	//	[Export ("isCustomMuteThisAdAvailable")]
+	//	bool IsCustomMuteThisAdAvailable { get; }
 
-		// @property(nonatomic, readonly, nullable) NSArray<GADMuteThisAdReason *> *muteThisAdReasons;
-		[NullAllowed]
-		[Export ("muteThisAdReasons")]
-		MuteThisAdReason [] MuteThisAdReasons { get; }
+	//	// @property(nonatomic, readonly, nullable) NSArray<GADMuteThisAdReason *> *muteThisAdReasons;
+	//	[NullAllowed]
+	//	[Export ("muteThisAdReasons")]
+	//	MuteThisAdReason [] MuteThisAdReasons { get; }
 
-		// -(void)registerAdView:(UIView * _Nonnull)adView clickableAssetViews:(NSDictionary<GADUnifiedNativeAssetIdentifier,UIView *> * _Nonnull)clickableAssetViews nonclickableAssetViews:(NSDictionary<GADUnifiedNativeAssetIdentifier,UIView *> * _Nonnull)nonclickableAssetViews;
-		[Export ("registerAdView:clickableAssetViews:nonclickableAssetViews:")]
-		void RegisterAdView (UIView adView, NSDictionary<NSString, UIView> nsClickableAssetViews, NSDictionary<NSString, UIView> nsNonclickableAssetViews);
+	//	// -(void)registerAdView:(UIView * _Nonnull)adView clickableAssetViews:(NSDictionary<GADUnifiedNativeAssetIdentifier,UIView *> * _Nonnull)clickableAssetViews nonclickableAssetViews:(NSDictionary<GADUnifiedNativeAssetIdentifier,UIView *> * _Nonnull)nonclickableAssetViews;
+	//	[Export ("registerAdView:clickableAssetViews:nonclickableAssetViews:")]
+	//	void RegisterAdView (UIView adView, NSDictionary<NSString, UIView> nsClickableAssetViews, NSDictionary<NSString, UIView> nsNonclickableAssetViews);
 
-		[Wrap ("RegisterAdView (adView, NSDictionary<NSString, UIView>.FromObjectsAndKeys (System.Linq.Enumerable.ToArray (clickableAssetViews.Values), System.Linq.Enumerable.ToArray (clickableAssetViews.Keys), clickableAssetViews.Keys.Count), NSDictionary<NSString, UIView>.FromObjectsAndKeys (System.Linq.Enumerable.ToArray (nonclickableAssetViews.Values), System.Linq.Enumerable.ToArray (nonclickableAssetViews.Keys), nonclickableAssetViews.Keys.Count))")]
-		void RegisterAdView (UIView adView, Dictionary<string, UIView> clickableAssetViews, Dictionary<string, UIView> nonclickableAssetViews);
+	//	[Wrap ("RegisterAdView (adView, NSDictionary<NSString, UIView>.FromObjectsAndKeys (System.Linq.Enumerable.ToArray (clickableAssetViews.Values), System.Linq.Enumerable.ToArray (clickableAssetViews.Keys), clickableAssetViews.Keys.Count), NSDictionary<NSString, UIView>.FromObjectsAndKeys (System.Linq.Enumerable.ToArray (nonclickableAssetViews.Values), System.Linq.Enumerable.ToArray (nonclickableAssetViews.Keys), nonclickableAssetViews.Keys.Count))")]
+	//	void RegisterAdView (UIView adView, Dictionary<string, UIView> clickableAssetViews, Dictionary<string, UIView> nonclickableAssetViews);
 
-		// -(void)unregisterAdView;
-		[Export ("unregisterAdView")]
-		void UnregisterAdView ();
+	//	// -(void)unregisterAdView;
+	//	[Export ("unregisterAdView")]
+	//	void UnregisterAdView ();
 
-		// - (void)muteThisAdWithReason:(nullable GADMuteThisAdReason *)reason;
-		[Export ("muteThisAdWithReason:")]
-		void MuteThisAd (MuteThisAdReason reason);
+	//	// - (void)muteThisAdWithReason:(nullable GADMuteThisAdReason *)reason;
+	//	[Export ("muteThisAdWithReason:")]
+	//	void MuteThisAd (MuteThisAdReason reason);
 
-		// @property (readonly, nonatomic, strong) GADVideoController * _Nullable videoController;
-		[Obsolete ("Use the MediaContent.VideoController property instead.")]
-		[NullAllowed]
-		[Export ("videoController", ArgumentSemantic.Strong)]
-		VideoController VideoController { get; }
+	//	// @property (readonly, nonatomic, strong) GADVideoController * _Nullable videoController;
+	//	[Obsolete ("Use the MediaContent.VideoController property instead.")]
+	//	[NullAllowed]
+	//	[Export ("videoController", ArgumentSemantic.Strong)]
+	//	VideoController VideoController { get; }
 
-		// @property (readonly, copy, nonatomic) NSString * _Nullable adNetworkClassName;
-		[Obsolete ("Use ResponseInfo.AdNetworkClassName.")]
-		[NullAllowed]
-		[Export ("adNetworkClassName")]
-		string AdNetworkClassName { get; }
+	//	// @property (readonly, copy, nonatomic) NSString * _Nullable adNetworkClassName;
+	//	[Obsolete ("Use ResponseInfo.AdNetworkClassName.")]
+	//	[NullAllowed]
+	//	[Export ("adNetworkClassName")]
+	//	string AdNetworkClassName { get; }
 
-		///
-		/// From UnifiedNativeAd_ConfirmationClick Category
-		///
+	//	///
+	//	/// From UnifiedNativeAd_ConfirmationClick Category
+	//	///
 
-		// @property (nonatomic, weak) id<GADUnifiedNativeAdUnconfirmedClickDelegate> _Nullable unconfirmedClickDelegate;
-		[NullAllowed]
-		[Export ("unconfirmedClickDelegate", ArgumentSemantic.Weak)]
-		IUnifiedNativeAdUnconfirmedClickDelegate UnconfirmedClickDelegate { get; set; }
+	//	// @property (nonatomic, weak) id<GADUnifiedNativeAdUnconfirmedClickDelegate> _Nullable unconfirmedClickDelegate;
+	//	[NullAllowed]
+	//	[Export ("unconfirmedClickDelegate", ArgumentSemantic.Weak)]
+	//	IUnifiedNativeAdUnconfirmedClickDelegate UnconfirmedClickDelegate { get; set; }
 
-		// -(void)registerClickConfirmingView:(UIView * _Nullable)view;
-		[Export ("registerClickConfirmingView:")]
-		void RegisterClickConfirmingView ([NullAllowed] UIView view);
+	//	// -(void)registerClickConfirmingView:(UIView * _Nullable)view;
+	//	[Export ("registerClickConfirmingView:")]
+	//	void RegisterClickConfirmingView ([NullAllowed] UIView view);
 
-		// -(void)cancelUnconfirmedClick;
-		[Export ("cancelUnconfirmedClick")]
-		void CancelUnconfirmedClick ();
+	//	// -(void)cancelUnconfirmedClick;
+	//	[Export ("cancelUnconfirmedClick")]
+	//	void CancelUnconfirmedClick ();
 
-		///
-		/// From UnifiedNativeAd_CustomClickGesture Category
-		///
+	//	///
+	//	/// From UnifiedNativeAd_CustomClickGesture Category
+	//	///
 
-		// - (void)enableCustomClickGestures;
-		[Export ("enableCustomClickGestures")]
-		void EnableCustomClickGestures ();
+	//	// - (void)enableCustomClickGestures;
+	//	[Export ("enableCustomClickGestures")]
+	//	void EnableCustomClickGestures ();
 
-		// - (void)recordCustomClickGesture;
-		[Export ("recordCustomClickGesture")]
-		void RecordCustomClickGesture ();
-	}
+	//	// - (void)recordCustomClickGesture;
+	//	[Export ("recordCustomClickGesture")]
+	//	void RecordCustomClickGesture ();
+	//}
 
 	interface IUnifiedNativeAdLoaderDelegate { }
 
 	// @protocol GADUnifiedNativeAdLoaderDelegate <GADAdLoaderDelegate>
-	[Model (AutoGeneratedName = true)]
-	[Protocol]
-	[BaseType (typeof (NSObject), Name = "GADUnifiedNativeAdLoaderDelegate")]
-	interface UnifiedNativeAdLoaderDelegate : AdLoaderDelegate {
-		// @required -(void)adLoader:(GADAdLoader * _Nonnull)adLoader didReceiveUnifiedNativeAd:(GADUnifiedNativeAd * _Nonnull)nativeAd;
-		[Abstract]
-		[Export ("adLoader:didReceiveUnifiedNativeAd:")]
-		void DidReceiveUnifiedNativeAd (AdLoader adLoader, UnifiedNativeAd nativeAd);
-	}
+	//[Model (AutoGeneratedName = true)]
+	//[Protocol]
+	//[BaseType (typeof (NSObject), Name = "GADUnifiedNativeAdLoaderDelegate")]
+	//interface UnifiedNativeAdLoaderDelegate : AdLoaderDelegate {
+	//	// @required -(void)adLoader:(GADAdLoader * _Nonnull)adLoader didReceiveUnifiedNativeAd:(GADUnifiedNativeAd * _Nonnull)nativeAd;
+	//	[Abstract]
+	//	[Export ("adLoader:didReceiveUnifiedNativeAd:")]
+	//	void DidReceiveUnifiedNativeAd (AdLoader adLoader, UnifiedNativeAd nativeAd);
+	//}
 
-	// @interface GADUnifiedNativeAdView : UIView
-	[BaseType (typeof (UIView), Name = "GADUnifiedNativeAdView")]
-	interface UnifiedNativeAdView {
-		[Export ("initWithFrame:")]
-		IntPtr Constructor (CGRect frame);
+	//// @interface GADUnifiedNativeAdView : UIView
+	//[BaseType (typeof (UIView), Name = "GADUnifiedNativeAdView")]
+	//interface UnifiedNativeAdView {
+	//	[Export ("initWithFrame:")]
+	//	IntPtr Constructor (CGRect frame);
 
-		// @property (nonatomic, strong) GADUnifiedNativeAd * _Nullable nativeAd;
-		[NullAllowed]
-		[Export ("nativeAd", ArgumentSemantic.Strong)]
-		UnifiedNativeAd NativeAd { get; set; }
+	//	// @property (nonatomic, strong) GADUnifiedNativeAd * _Nullable nativeAd;
+	//	[NullAllowed]
+	//	[Export ("nativeAd", ArgumentSemantic.Strong)]
+	//	UnifiedNativeAd NativeAd { get; set; }
 
-		// @property (nonatomic, weak) UIView * _Nullable headlineView __attribute__((iboutlet));
-		[NullAllowed]
-		[Export ("headlineView", ArgumentSemantic.Weak)]
-		UIView HeadlineView { get; set; }
+	//	// @property (nonatomic, weak) UIView * _Nullable headlineView __attribute__((iboutlet));
+	//	[NullAllowed]
+	//	[Export ("headlineView", ArgumentSemantic.Weak)]
+	//	UIView HeadlineView { get; set; }
 
-		// @property (nonatomic, weak) UIView * _Nullable callToActionView __attribute__((iboutlet));
-		[NullAllowed]
-		[Export ("callToActionView", ArgumentSemantic.Weak)]
-		UIView CallToActionView { get; set; }
+	//	// @property (nonatomic, weak) UIView * _Nullable callToActionView __attribute__((iboutlet));
+	//	[NullAllowed]
+	//	[Export ("callToActionView", ArgumentSemantic.Weak)]
+	//	UIView CallToActionView { get; set; }
 
-		// @property (nonatomic, weak) UIView * _Nullable iconView __attribute__((iboutlet));
-		[NullAllowed]
-		[Export ("iconView", ArgumentSemantic.Weak)]
-		UIView IconView { get; set; }
+	//	// @property (nonatomic, weak) UIView * _Nullable iconView __attribute__((iboutlet));
+	//	[NullAllowed]
+	//	[Export ("iconView", ArgumentSemantic.Weak)]
+	//	UIView IconView { get; set; }
 
-		// @property (nonatomic, weak) UIView * _Nullable bodyView __attribute__((iboutlet));
-		[NullAllowed]
-		[Export ("bodyView", ArgumentSemantic.Weak)]
-		UIView BodyView { get; set; }
+	//	// @property (nonatomic, weak) UIView * _Nullable bodyView __attribute__((iboutlet));
+	//	[NullAllowed]
+	//	[Export ("bodyView", ArgumentSemantic.Weak)]
+	//	UIView BodyView { get; set; }
 
-		// @property (nonatomic, weak) UIView * _Nullable storeView __attribute__((iboutlet));
-		[NullAllowed]
-		[Export ("storeView", ArgumentSemantic.Weak)]
-		UIView StoreView { get; set; }
+	//	// @property (nonatomic, weak) UIView * _Nullable storeView __attribute__((iboutlet));
+	//	[NullAllowed]
+	//	[Export ("storeView", ArgumentSemantic.Weak)]
+	//	UIView StoreView { get; set; }
 
-		// @property (nonatomic, weak) UIView * _Nullable priceView __attribute__((iboutlet));
-		[NullAllowed]
-		[Export ("priceView", ArgumentSemantic.Weak)]
-		UIView PriceView { get; set; }
+	//	// @property (nonatomic, weak) UIView * _Nullable priceView __attribute__((iboutlet));
+	//	[NullAllowed]
+	//	[Export ("priceView", ArgumentSemantic.Weak)]
+	//	UIView PriceView { get; set; }
 
-		// @property (nonatomic, weak) UIView * _Nullable imageView __attribute__((iboutlet));
-		[NullAllowed]
-		[Export ("imageView", ArgumentSemantic.Weak)]
-		UIView ImageView { get; set; }
+	//	// @property (nonatomic, weak) UIView * _Nullable imageView __attribute__((iboutlet));
+	//	[NullAllowed]
+	//	[Export ("imageView", ArgumentSemantic.Weak)]
+	//	UIView ImageView { get; set; }
 
-		// @property (nonatomic, weak) UIView * _Nullable starRatingView __attribute__((iboutlet));
-		[NullAllowed]
-		[Export ("starRatingView", ArgumentSemantic.Weak)]
-		UIView StarRatingView { get; set; }
+	//	// @property (nonatomic, weak) UIView * _Nullable starRatingView __attribute__((iboutlet));
+	//	[NullAllowed]
+	//	[Export ("starRatingView", ArgumentSemantic.Weak)]
+	//	UIView StarRatingView { get; set; }
 
-		// @property (nonatomic, weak) UIView * _Nullable advertiserView __attribute__((iboutlet));
-		[NullAllowed]
-		[Export ("advertiserView", ArgumentSemantic.Weak)]
-		UIView AdvertiserView { get; set; }
+	//	// @property (nonatomic, weak) UIView * _Nullable advertiserView __attribute__((iboutlet));
+	//	[NullAllowed]
+	//	[Export ("advertiserView", ArgumentSemantic.Weak)]
+	//	UIView AdvertiserView { get; set; }
 
-		// @property (nonatomic, weak) GADMediaView * _Nullable mediaView __attribute__((iboutlet));
-		[NullAllowed]
-		[Export ("mediaView", ArgumentSemantic.Weak)]
-		MediaView MediaView { get; set; }
+	//	// @property (nonatomic, weak) GADMediaView * _Nullable mediaView __attribute__((iboutlet));
+	//	[NullAllowed]
+	//	[Export ("mediaView", ArgumentSemantic.Weak)]
+	//	MediaView MediaView { get; set; }
 
-		// @property (nonatomic, weak) GADAdChoicesView * _Nullable adChoicesView __attribute__((iboutlet));
-		[NullAllowed]
-		[Export ("adChoicesView", ArgumentSemantic.Weak)]
-		AdChoicesView AdChoicesView { get; set; }
-	}
+	//	// @property (nonatomic, weak) GADAdChoicesView * _Nullable adChoicesView __attribute__((iboutlet));
+	//	[NullAllowed]
+	//	[Export ("adChoicesView", ArgumentSemantic.Weak)]
+	//	AdChoicesView AdChoicesView { get; set; }
+	//}
 
 	[Static]
 	interface UnifiedNativeAdAssetIdentifiers {
@@ -1334,70 +1334,70 @@ namespace Google.MobileAds {
 	interface IUnifiedNativeAdDelegate { }
 
 	// @protocol GADUnifiedNativeAdDelegate <NSObject>
-	[Model (AutoGeneratedName = true)]
-	[Protocol]
-	[BaseType (typeof (NSObject), Name = "GADUnifiedNativeAdDelegate")]
-	interface UnifiedNativeAdDelegate {
-		// @optional -(void)nativeAdDidRecordImpression:(GADUnifiedNativeAd * _Nonnull)nativeAd;
-		[EventArgs ("UnifiedNativeAd")]
-		[EventName ("ImpressionRecorded")]
-		[Export ("nativeAdDidRecordImpression:")]
-		void DidRecordImpression (UnifiedNativeAd nativeAd);
+	//[Model (AutoGeneratedName = true)]
+	//[Protocol]
+	//[BaseType (typeof (NSObject), Name = "GADUnifiedNativeAdDelegate")]
+	//interface UnifiedNativeAdDelegate {
+	//	// @optional -(void)nativeAdDidRecordImpression:(GADUnifiedNativeAd * _Nonnull)nativeAd;
+	//	[EventArgs ("UnifiedNativeAd")]
+	//	[EventName ("ImpressionRecorded")]
+	//	[Export ("nativeAdDidRecordImpression:")]
+	//	void DidRecordImpression (UnifiedNativeAd nativeAd);
 
-		// @optional -(void)nativeAdDidRecordClick:(GADUnifiedNativeAd * _Nonnull)nativeAd;
-		[EventArgs ("UnifiedNativeAd")]
-		[EventName ("ClickRecorded")]
-		[Export ("nativeAdDidRecordClick:")]
-		void DidRecordClick (UnifiedNativeAd nativeAd);
+	//	// @optional -(void)nativeAdDidRecordClick:(GADUnifiedNativeAd * _Nonnull)nativeAd;
+	//	[EventArgs ("UnifiedNativeAd")]
+	//	[EventName ("ClickRecorded")]
+	//	[Export ("nativeAdDidRecordClick:")]
+	//	void DidRecordClick (UnifiedNativeAd nativeAd);
 
-		// @optional -(void)nativeAdWillPresentScreen:(GADUnifiedNativeAd * _Nonnull)nativeAd;
-		[EventArgs ("UnifiedNativeAd")]
-		[Export ("nativeAdWillPresentScreen:")]
-		void WillPresentScreen (UnifiedNativeAd nativeAd);
+	//	// @optional -(void)nativeAdWillPresentScreen:(GADUnifiedNativeAd * _Nonnull)nativeAd;
+	//	[EventArgs ("UnifiedNativeAd")]
+	//	[Export ("nativeAdWillPresentScreen:")]
+	//	void WillPresentScreen (UnifiedNativeAd nativeAd);
 
-		// @optional -(void)nativeAdWillDismissScreen:(GADUnifiedNativeAd * _Nonnull)nativeAd;
-		[EventArgs ("UnifiedNativeAd")]
-		[Export ("nativeAdWillDismissScreen:")]
-		void WillDismissScreen (UnifiedNativeAd nativeAd);
+	//	// @optional -(void)nativeAdWillDismissScreen:(GADUnifiedNativeAd * _Nonnull)nativeAd;
+	//	[EventArgs ("UnifiedNativeAd")]
+	//	[Export ("nativeAdWillDismissScreen:")]
+	//	void WillDismissScreen (UnifiedNativeAd nativeAd);
 
-		// @optional -(void)nativeAdDidDismissScreen:(GADUnifiedNativeAd * _Nonnull)nativeAd;
-		[EventArgs ("UnifiedNativeAd")]
-		[EventName ("ScreenDismissed")]
-		[Export ("nativeAdDidDismissScreen:")]
-		void DidDismissScreen (UnifiedNativeAd nativeAd);
+	//	// @optional -(void)nativeAdDidDismissScreen:(GADUnifiedNativeAd * _Nonnull)nativeAd;
+	//	[EventArgs ("UnifiedNativeAd")]
+	//	[EventName ("ScreenDismissed")]
+	//	[Export ("nativeAdDidDismissScreen:")]
+	//	void DidDismissScreen (UnifiedNativeAd nativeAd);
 
-		// @optional -(void)nativeAdWillLeaveApplication:(GADUnifiedNativeAd * _Nonnull)nativeAd;
-		[EventArgs ("UnifiedNativeAd")]
-		[Export ("nativeAdWillLeaveApplication:")]
-		void WillLeaveApplication (UnifiedNativeAd nativeAd);
+	//	// @optional -(void)nativeAdWillLeaveApplication:(GADUnifiedNativeAd * _Nonnull)nativeAd;
+	//	[EventArgs ("UnifiedNativeAd")]
+	//	[Export ("nativeAdWillLeaveApplication:")]
+	//	void WillLeaveApplication (UnifiedNativeAd nativeAd);
 
-		// @optional -(void)nativeAdIsMuted:(GADUnifiedNativeAd *)nativeAd;
-		[EventArgs ("UnifiedNativeAd")]
-		[Export ("nativeAdIsMuted:")]
-		void IsMuted (UnifiedNativeAd nativeAd);
-	}
+	//	// @optional -(void)nativeAdIsMuted:(GADUnifiedNativeAd *)nativeAd;
+	//	[EventArgs ("UnifiedNativeAd")]
+	//	[Export ("nativeAdIsMuted:")]
+	//	void IsMuted (UnifiedNativeAd nativeAd);
+	//}
 
-	interface IUnifiedNativeAdUnconfirmedClickDelegate { }
+	//interface IUnifiedNativeAdUnconfirmedClickDelegate { }
 
-	// @protocol GADUnifiedNativeAdUnconfirmedClickDelegate <NSObject>
-	[Model (AutoGeneratedName = true)]
-	[Protocol]
-	[BaseType (typeof (NSObject), Name = "GADUnifiedNativeAdUnconfirmedClickDelegate")]
-	interface UnifiedNativeAdUnconfirmedClickDelegate {
+	//// @protocol GADUnifiedNativeAdUnconfirmedClickDelegate <NSObject>
+	//[Model (AutoGeneratedName = true)]
+	//[Protocol]
+	//[BaseType (typeof (NSObject), Name = "GADUnifiedNativeAdUnconfirmedClickDelegate")]
+	//interface UnifiedNativeAdUnconfirmedClickDelegate {
 		// @required -(void)nativeAd:(GADUnifiedNativeAd * _Nonnull)nativeAd didReceiveUnconfirmedClickOnAssetID:(GADUnifiedNativeAssetIdentifier _Nonnull)assetID;
-		[EventArgs ("UnifiedNativeAdUnconfirmedClickReceived")]
-		[EventName ("UnconfirmedClickReceived")]
-		[Abstract]
-		[Export ("nativeAd:didReceiveUnconfirmedClickOnAssetID:")]
-		void DidReceiveUnconfirmedClick (UnifiedNativeAd nativeAd, string assetId);
+		//[EventArgs ("UnifiedNativeAdUnconfirmedClickReceived")]
+		//[EventName ("UnconfirmedClickReceived")]
+		//[Abstract]
+		//[Export ("nativeAd:didReceiveUnconfirmedClickOnAssetID:")]
+		//void DidReceiveUnconfirmedClick (UnifiedNativeAd nativeAd, string assetId);
 
 		// @required -(void)nativeAdDidCancelUnconfirmedClick:(GADUnifiedNativeAd * _Nonnull)nativeAd;
-		[EventArgs ("UnifiedNativeAdUnconfirmedClickCancelled")]
-		[EventName ("UnconfirmedClickCancelled")]
-		[Abstract]
-		[Export ("nativeAdDidCancelUnconfirmedClick:")]
-		void DidCancelUnconfirmedClick (UnifiedNativeAd nativeAd);
-	}
+		//[EventArgs ("UnifiedNativeAdUnconfirmedClickCancelled")]
+		//[EventName ("UnconfirmedClickCancelled")]
+		//[Abstract]
+		//[Export ("nativeAdDidCancelUnconfirmedClick:")]
+		//void DidCancelUnconfirmedClick (UnifiedNativeAd nativeAd);
+	//}
 
 	// @interface GADVideoController : NSObject
 	[BaseType (typeof (NSObject),
@@ -1554,16 +1554,16 @@ namespace Google.MobileAds {
 		//NSString NativeContent { get; }
 
 		// extern NSString *const kGADAdLoaderAdTypeNativeCustomTemplate;
-		[Field("kGADAdLoaderAdTypeNativeCustomTemplate", "__Internal")]
-		NSString NativeCustomTemplate { get; }
+		//[Field("kGADAdLoaderAdTypeNativeCustomTemplate", "__Internal")]
+		//NSString NativeCustomTemplate { get; }
 
 		// extern NSString *const kGADAdLoaderAdTypeDFPBanner;
-		[Field ("kGADAdLoaderAdTypeDFPBanner", "__Internal")]
-		NSString DfpBanner { get; }
+		//[Field ("kGADAdLoaderAdTypeDFPBanner", "__Internal")]
+		//NSString DfpBanner { get; }
 
 		// AD_EXTERN GADAdLoaderAdType const kGADAdLoaderAdTypeUnifiedNative;
-		[Field ("kGADAdLoaderAdTypeUnifiedNative", "__Internal")]
-		NSString UnifiedNative { get; }
+		//[Field ("kGADAdLoaderAdTypeUnifiedNative", "__Internal")]
+		//NSString UnifiedNative { get; }
 	}
 
 	interface IAdLoaderDelegate {
@@ -1575,9 +1575,9 @@ namespace Google.MobileAds {
 	[BaseType (typeof (NSObject), Name = "GADAdLoaderDelegate")]
 	interface AdLoaderDelegate {
 		// @required -(void)adLoader:(GADAdLoader *)adLoader didFailToReceiveAdWithError:(GADRequestError *)error;
-		[Abstract]
-		[Export ("adLoader:didFailToReceiveAdWithError:")]
-		void DidFailToReceiveAd (AdLoader adLoader, RequestError error);
+		//[Abstract]
+		//[Export ("adLoader:didFailToReceiveAdWithError:")]
+		//void DidFailToReceiveAd (AdLoader adLoader, RequestError error);
 
 		// @optional - (void)adLoaderDidFinishLoading:(GADAdLoader *)adLoader;
 		[Export ("adLoaderDidFinishLoading:")]
@@ -1702,67 +1702,66 @@ namespace Google.MobileAds {
 	delegate void NativeAdCustomClickHandle (string assetId);
 
 	// @interface GADNativeCustomTemplateAd : GADNativeAd
-	[BaseType (typeof (NativeAd), Name = "GADNativeCustomTemplateAd")]
-	interface NativeCustomTemplateAd {
-		// extern NSString *const GADNativeCustomTemplateAdMediaViewKey;
-		[Internal]
-		[Field ("GADNativeCustomTemplateAdMediaViewKey", "__Internal")]
-		NSString _MediaViewKey { get; }
+	//[BaseType (typeof (NativeAd), Name = "GADNativeCustomTemplateAd")]
+	//interface NativeCustomTemplateAd {
+	//	// extern NSString *const GADNativeCustomTemplateAdMediaViewKey;
+	//	// [Internal]
+	//	// NSString _MediaViewKey { get; }
 
-		// @property (readonly, nonatomic) NSString * templateID;
-		[Export ("templateID")]
-		string TemplateId { get; }
+	//	// @property (readonly, nonatomic) NSString * templateID;
+	//	[Export ("templateID")]
+	//	string TemplateId { get; }
 
-		[Obsolete ("Use the TemplateId property instead. This will be removed in future versions.")]
-		[Wrap ("TemplateId")]
-		string TemplateID { get; }
+	//	[Obsolete ("Use the TemplateId property instead. This will be removed in future versions.")]
+	//	[Wrap ("TemplateId")]
+	//	string TemplateID { get; }
 
-		// @property (readonly, nonatomic) NSArray * availableAssetKeys;
-		[Export ("availableAssetKeys")]
-		string [] AvailableAssetKeys { get; }
+	//	// @property (readonly, nonatomic) NSArray * availableAssetKeys;
+	//	[Export ("availableAssetKeys")]
+	//	string [] AvailableAssetKeys { get; }
 
-		// @property(nonatomic, readonly, strong) GADVideoController *videoController;
-		[Export ("videoController")]
-		VideoController VideoController { get; }
+	//	// @property(nonatomic, readonly, strong) GADVideoController *videoController;
+	//	[Export ("videoController")]
+	//	VideoController VideoController { get; }
 
-		// @property(nonatomic, readonly, strong, GAD_NULLABLE) GADMediaView *mediaView;
-		[NullAllowed]
-		[Export ("mediaView")]
-		MediaView MediaView { get; }
+	//	// @property(nonatomic, readonly, strong, GAD_NULLABLE) GADMediaView *mediaView;
+	//	[NullAllowed]
+	//	[Export ("mediaView")]
+	//	MediaView MediaView { get; }
 
-		// @property(atomic, copy) GADNativeAdCustomClickHandler customClickHandler;
-		[NullAllowed]
-		[Export ("customClickHandler", ArgumentSemantic.Copy)]
-		NativeAdCustomClickHandle CustomClickHandler { get; }
+	//	// @property(atomic, copy) GADNativeAdCustomClickHandler customClickHandler;
+	//	[NullAllowed]
+	//	[Export ("customClickHandler", ArgumentSemantic.Copy)]
+	//	NativeAdCustomClickHandle CustomClickHandler { get; }
 
-		// @property (readonly, nonatomic) GADDisplayAdMeasurement * _Nullable displayAdMeasurement;
-		[NullAllowed]
-		[Export ("displayAdMeasurement")]
-		DisplayAdMeasurement DisplayAdMeasurement { get; }
+	//	// @property (readonly, nonatomic) GADDisplayAdMeasurement * _Nullable displayAdMeasurement;
+	//	[NullAllowed]
+	//	[Export ("displayAdMeasurement")]
+	//	DisplayAdMeasurement DisplayAdMeasurement { get; }
 
-		// -(GADNativeAdImage *)imageForKey:(NSString *)key;
-		[return: NullAllowed]
-		[Export ("imageForKey:")]
-		NativeAdImage ImageForKey (string key);
+	//	// -(GADNativeAdImage *)imageForKey:(NSString *)key;
+	//	[return: NullAllowed]
+	//	[Export ("imageForKey:")]
+	//	NativeAdImage ImageForKey (string key);
 
-		// -(NSString *)stringForKey:(NSString *)key;
-		[return: NullAllowed]
-		[Export ("stringForKey:")]
-		string StringForKey (string key);
+	//	// -(NSString *)stringForKey:(NSString *)key;
+	//	[return: NullAllowed]
+	//	[Export ("stringForKey:")]
+	//	string StringForKey (string key);
 
-		// - (void)performClickOnAssetWithKey:(NSString *)assetKey;
-		[Export ("performClickOnAssetWithKey:")]
-		void PerformClickOnAssetWithKey (string assetKey);
+	//	// - (void)performClickOnAssetWithKey:(NSString *)assetKey;
+	//	[Export ("performClickOnAssetWithKey:")]
+	//	void PerformClickOnAssetWithKey (string assetKey);
 
-		// - (void)recordImpression;
-		[Export ("recordImpression")]
-		void RecordImpression ();
+	//	// - (void)recordImpression;
+	//	[Export ("recordImpression")]
+	//	void RecordImpression ();
 
-		// -(void)performClickOnAssetWithKey:(NSString *)assetKey customClickHandler:(dispatch_block_t)customClickHandler;
-		[Obsolete ("Use PerformClickOnAssetWithKey (string) method instead.")]
-		[Export ("performClickOnAssetWithKey:customClickHandler:")]
-		void PerformClickOnAssetWithKey (string assetKey, [NullAllowed] Action customClickHandler);
-	}
+	//	// -(void)performClickOnAssetWithKey:(NSString *)assetKey customClickHandler:(dispatch_block_t)customClickHandler;
+	//	[Obsolete ("Use PerformClickOnAssetWithKey (string) method instead.")]
+	//	[Export ("performClickOnAssetWithKey:customClickHandler:")]
+	//	void PerformClickOnAssetWithKey (string assetKey, [NullAllowed] Action customClickHandler);
+	//}
 
 	// @interface GADNativeExpressAdView : UIView
 	[Obsolete]
@@ -1843,10 +1842,10 @@ namespace Google.MobileAds {
 		void DidReceiveAd (NativeExpressAdView nativeExpressAdView);
 
 		// @optional -(void)nativeExpressAdView:(GADNativeExpressAdView *)nativeExpressAdView didFailToReceiveAdWithError:(GADRequestError *)error;
-		[EventArgs ("NativeExpressAdViewError")]
-		[EventName ("ReceiveAdFailed")]
-		[Export ("nativeExpressAdView:didFailToReceiveAdWithError:")]
-		void DidFailToReceiveAd (NativeExpressAdView nativeExpressAdView, RequestError error);
+		//[EventArgs ("NativeExpressAdViewError")]
+		//[EventName ("ReceiveAdFailed")]
+		//[Export ("nativeExpressAdView:didFailToReceiveAdWithError:")]
+		//void DidFailToReceiveAd (NativeExpressAdView nativeExpressAdView, RequestError error);
 
 		// @optional -(void)nativeExpressAdViewWillPresentScreen:(GADNativeExpressAdView *)nativeExpressAdView;
 		[EventArgs ("NativeExpressAdView")]
@@ -1883,9 +1882,9 @@ namespace Google.MobileAds {
 		string [] NativeCustomTemplateIDs (AdLoader adLoader);
 
 		// @required -(void)adLoader:(GADAdLoader *)adLoader didReceiveNativeCustomTemplateAd:(GADNativeCustomTemplateAd *)nativeCustomTemplateAd;
-		[Abstract]
-		[Export ("adLoader:didReceiveNativeCustomTemplateAd:")]
-		void DidReceiveNativeCustomTemplateAd (AdLoader adLoader, NativeCustomTemplateAd nativeCustomTemplateAd);
+		//[Abstract]
+		//[Export ("adLoader:didReceiveNativeCustomTemplateAd:")]
+		//void DidReceiveNativeCustomTemplateAd (AdLoader adLoader, NativeCustomTemplateAd nativeCustomTemplateAd);
 	}
 
 	#endregion
@@ -2580,117 +2579,117 @@ namespace Google.MobileAds.DoubleClick {
 		void DidReceiveBannerView (Google.MobileAds.AdLoader adLoader, BannerView bannerView);
 	}
 
-	[BaseType (typeof (Google.MobileAds.BannerView),
-		Name = "DFPBannerView",
-		Delegates = new string [] { "AdSizeDelegate" },
-		Events = new Type [] { typeof (Google.MobileAds.AdSizeDelegate) })]
-	interface BannerView {
+	//[BaseType (typeof (Google.MobileAds.BannerView),
+	//	Name = "DFPBannerView",
+	//	Delegates = new string [] { "AdSizeDelegate" },
+	//	Events = new Type [] { typeof (Google.MobileAds.AdSizeDelegate) })]
+	//interface BannerView {
 
-		[Export ("initWithFrame:")]
+	//	[Export ("initWithFrame:")]
 		
-		IntPtr Constructor (CGRect frame);
+	//	IntPtr Constructor (CGRect frame);
 
-		[Export ("initWithAdSize:origin:")]
-		IntPtr Constructor (AdSize size, CGPoint origin);
+	//	[Export ("initWithAdSize:origin:")]
+	//	IntPtr Constructor (AdSize size, CGPoint origin);
 
-		[Export ("initWithAdSize:")]
-		IntPtr Constructor (AdSize size);
+	//	[Export ("initWithAdSize:")]
+	//	IntPtr Constructor (AdSize size);
 
-		[New]
-		[NullAllowed]
-		[Export ("adUnitID", ArgumentSemantic.Copy)]
-		string AdUnitID { get; set; }
+	//	[New]
+	//	[NullAllowed]
+	//	[Export ("adUnitID", ArgumentSemantic.Copy)]
+	//	string AdUnitID { get; set; }
 
-		[NullAllowed]
-		[Export ("appEventDelegate", ArgumentSemantic.Weak)]
-		IAppEventDelegate AppEventDelegate { get; set; }
+	//	[NullAllowed]
+	//	[Export ("appEventDelegate", ArgumentSemantic.Weak)]
+	//	IAppEventDelegate AppEventDelegate { get; set; }
 
-		[New]
-		[NullAllowed]
-		[Export ("adSizeDelegate", ArgumentSemantic.Weak)]
-		IAdSizeDelegate AdSizeDelegate { get; set; }
+	//	[New]
+	//	[NullAllowed]
+	//	[Export ("adSizeDelegate", ArgumentSemantic.Weak)]
+	//	IAdSizeDelegate AdSizeDelegate { get; set; }
 
-		[NullAllowed]
-		[Export ("validAdSizes", ArgumentSemantic.Copy)]
-		NSValue [] ValidAdSizes { get; set; }
+	//	[NullAllowed]
+	//	[Export ("validAdSizes", ArgumentSemantic.Copy)]
+	//	NSValue [] ValidAdSizes { get; set; }
 
-		[Export ("enableManualImpressions")]
-		bool EnableManualImpressions { get; set; }
+	//	[Export ("enableManualImpressions")]
+	//	bool EnableManualImpressions { get; set; }
 
-		// @property(nonatomic, readonly, nonnull) GADVideoController *videoController;
-		[Export ("videoController")]
-		Google.MobileAds.VideoController VideoController { get; }
+	//	// @property(nonatomic, readonly, nonnull) GADVideoController *videoController;
+	//	[Export ("videoController")]
+	//	Google.MobileAds.VideoController VideoController { get; }
 
-		[Export ("recordImpression")]
-		void RecordImpression ();
+	//	[Export ("recordImpression")]
+	//	void RecordImpression ();
 
-		[Export ("resize:")]
-		void Resize (AdSize size);
+	//	[Export ("resize:")]
+	//	void Resize (AdSize size);
 
-		// - (void)setAdOptions:(NSArray *)adOptions;
-		[Export ("setAdOptions:")]
-		void SetAdOptions (AdLoaderOptions [] adOptions);
+	//	// - (void)setAdOptions:(NSArray *)adOptions;
+	//	[Export ("setAdOptions:")]
+	//	void SetAdOptions (AdLoaderOptions [] adOptions);
 
-		[Internal]
-		[Export ("setValidAdSizesWithSizes:", IsVariadic = true)]
-		void SetValidAdSizes (AdSize firstSize, IntPtr sizesPtr);
-	}
+	//	[Internal]
+	//	[Export ("setValidAdSizesWithSizes:", IsVariadic = true)]
+	//	void SetValidAdSizes (AdSize firstSize, IntPtr sizesPtr);
+	//}
 
 	// @interface DFPBannerViewOptions : GADAdLoaderOptions
-	[BaseType (typeof (AdLoaderOptions), Name = "DFPBannerViewOptions")]
-	interface BannerViewOptions {
-		// @property(nonatomic, weak, GAD_NULLABLE) id<GADAppEventDelegate> appEventDelegate;
-		[NullAllowed]
-		[Export ("appEventDelegate", ArgumentSemantic.Weak)]
-		Google.MobileAds.IAppEventDelegate AppEventDelegate { get; set; }
+	//[BaseType (typeof (AdLoaderOptions), Name = "DFPBannerViewOptions")]
+	//interface BannerViewOptions {
+	//	// @property(nonatomic, weak, GAD_NULLABLE) id<GADAppEventDelegate> appEventDelegate;
+	//	[NullAllowed]
+	//	[Export ("appEventDelegate", ArgumentSemantic.Weak)]
+	//	Google.MobileAds.IAppEventDelegate AppEventDelegate { get; set; }
 
-		// @property(nonatomic, weak, GAD_NULLABLE) id<GADAdSizeDelegate> adSizeDelegate;
-		[NullAllowed]
-		[Export ("adSizeDelegate", ArgumentSemantic.Weak)]
-		Google.MobileAds.IAdSizeDelegate AdSizeDelegate { get; set; }
+	//	// @property(nonatomic, weak, GAD_NULLABLE) id<GADAdSizeDelegate> adSizeDelegate;
+	//	[NullAllowed]
+	//	[Export ("adSizeDelegate", ArgumentSemantic.Weak)]
+	//	Google.MobileAds.IAdSizeDelegate AdSizeDelegate { get; set; }
 
-		// @property(nonatomic, assign) BOOL enableManualImpressions;
-		[Export ("enableManualImpressions", ArgumentSemantic.Assign)]
-		bool EnableManualImpressions { get; set; }
-	}
+	//	// @property(nonatomic, assign) BOOL enableManualImpressions;
+	//	[Export ("enableManualImpressions", ArgumentSemantic.Assign)]
+	//	bool EnableManualImpressions { get; set; }
+	//}
 
-	[DisableDefaultCtor]
-	[BaseType (typeof (Google.MobileAds.Interstitial),
-		Name = "DFPInterstitial")]
-	interface Interstitial {
-		// -(instancetype _Nonnull)initWithAdUnitID:(NSString * _Nonnull)adUnitID __attribute__((objc_designated_initializer));
-		[DesignatedInitializer]
-		[Export ("initWithAdUnitID:")]
-		IntPtr Constructor (string adUnitID);
+	//[DisableDefaultCtor]
+	//[BaseType (typeof (Google.MobileAds.Interstitial),
+	//	Name = "DFPInterstitial")]
+	//interface Interstitial {
+	//	// -(instancetype _Nonnull)initWithAdUnitID:(NSString * _Nonnull)adUnitID __attribute__((objc_designated_initializer));
+	//	[DesignatedInitializer]
+	//	[Export ("initWithAdUnitID:")]
+	//	IntPtr Constructor (string adUnitID);
 
-		[NullAllowed]
-		[Export ("appEventDelegate", ArgumentSemantic.Weak)]
-		IAppEventDelegate AppEventDelegate { get; set; }
-	}
+	//	[NullAllowed]
+	//	[Export ("appEventDelegate", ArgumentSemantic.Weak)]
+	//	IAppEventDelegate AppEventDelegate { get; set; }
+	//}
 
-	[BaseType (typeof (Google.MobileAds.Request), Name = "DFPRequest")]
-	interface Request {
-		[New]
-		[Field ("kDFPSimulatorID", "__Internal")]
-		NSString SimulatorId { get; }
+	//[BaseType (typeof (Google.MobileAds.Request), Name = "DFPRequest")]
+	//interface Request {
+	//	[New]
+	//	[Field ("kDFPSimulatorID", "__Internal")]
+	//	NSString SimulatorId { get; }
 
-		[New]
-		[Static]
-		[Export ("request")]
-		Request GetDefaultRequest ();
+	//	[New]
+	//	[Static]
+	//	[Export ("request")]
+	//	Request GetDefaultRequest ();
 
-		[NullAllowed]
-		[Export ("publisherProvidedID", ArgumentSemantic.Copy)]
-		string PublisherProvidedID { get; set; }
+	//	[NullAllowed]
+	//	[Export ("publisherProvidedID", ArgumentSemantic.Copy)]
+	//	string PublisherProvidedID { get; set; }
 
-		[NullAllowed]
-		[Export ("categoryExclusions", ArgumentSemantic.Copy)]
-		string [] CategoryExclusions { get; set; }
+	//	[NullAllowed]
+	//	[Export ("categoryExclusions", ArgumentSemantic.Copy)]
+	//	string [] CategoryExclusions { get; set; }
 
-		[NullAllowed]
-		[Export ("customTargeting", ArgumentSemantic.Copy)]
-		NSDictionary CustomTargeting { get; set; }
-	}
+	//	[NullAllowed]
+	//	[Export ("customTargeting", ArgumentSemantic.Copy)]
+	//	NSDictionary CustomTargeting { get; set; }
+	//}
 
 	#endregion
 }

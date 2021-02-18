@@ -29,7 +29,7 @@ namespace Google.MobileAds
 
 	public partial class NativeCustomTemplateAd
 	{
-		public static string MediaViewKey { get; } = _MediaViewKey.ToString ();
+		//public static string MediaViewKey { get; } = _MediaViewKey.ToString ();
 	}
 
 	public partial class Request
@@ -37,12 +37,12 @@ namespace Google.MobileAds
 		public static readonly string GADGoogleAdMobNetworkName = "GoogleAdMobAds";
 	}
 
-	public partial class RequestError : NSError
-	{
-		public RequestError (NSString appDomain, nint code) : this (appDomain, code, null)
-		{
-		}
-	}
+	//public partial class RequestError : NSError
+	//{
+	//	public RequestError (NSString appDomain, nint code) : this (appDomain, code, null)
+	//	{
+	//	}
+	//}
 
 	[Preserve (AllMembers = true)]
 	public partial class AdSizeCons
@@ -276,11 +276,11 @@ namespace Google.MobileAds
 		}
 	}
 
-	public partial class RewardBasedVideoAd
-	{
-		[Obsolete ("Use IsReady property instead, this will be removed in future versions")]
-		public bool Ready { get { return IsReady; } }
-	}
+	//public partial class RewardBasedVideoAd
+	//{
+	//	[Obsolete ("Use IsReady property instead, this will be removed in future versions")]
+	//	public bool Ready { get { return IsReady; } }
+	//}
 
 }
 
@@ -288,26 +288,26 @@ namespace Google.MobileAds.DoubleClick
 {
 	public partial class BannerView : Google.MobileAds.BannerView
 	{
-		[Obsolete ("Use ValidAdSizes property.")]
-		public void SetValidAdSizes (params AdSize [] sizes)
-		{
-			if (sizes == null)
-				throw new ArgumentNullException ("sizes");
+		//[Obsolete ("Use ValidAdSizes property.")]
+		//public void SetValidAdSizes (params AdSize [] sizes)
+		//{
+		//	if (sizes == null)
+		//		throw new ArgumentNullException ("sizes");
 
-			var pNativeArr = Marshal.AllocHGlobal (sizes.Length * IntPtr.Size);
-			for (int i = 1; i < sizes.Length; ++i) {
-				IntPtr sizePtr = Marshal.AllocHGlobal (Marshal.SizeOf (sizes [i]));
-				Marshal.StructureToPtr (sizes [i], sizePtr, false);
-				Marshal.WriteIntPtr (pNativeArr, (i - 1) * IntPtr.Size, sizePtr);
+		//	var pNativeArr = Marshal.AllocHGlobal (sizes.Length * IntPtr.Size);
+		//	for (int i = 1; i < sizes.Length; ++i) {
+		//		IntPtr sizePtr = Marshal.AllocHGlobal (Marshal.SizeOf (sizes [i]));
+		//		Marshal.StructureToPtr (sizes [i], sizePtr, false);
+		//		Marshal.WriteIntPtr (pNativeArr, (i - 1) * IntPtr.Size, sizePtr);
 
-				Marshal.FreeHGlobal (sizePtr);
-			}
+		//		Marshal.FreeHGlobal (sizePtr);
+		//	}
 
-			// null termination
-			Marshal.WriteIntPtr (pNativeArr, (sizes.Length - 1) * IntPtr.Size, IntPtr.Zero);
+		//	// null termination
+		//	Marshal.WriteIntPtr (pNativeArr, (sizes.Length - 1) * IntPtr.Size, IntPtr.Zero);
 
-			SetValidAdSizes (sizes [0], pNativeArr);
-			Marshal.FreeHGlobal (pNativeArr);
-		}
+		//	SetValidAdSizes (sizes [0], pNativeArr);
+		//	Marshal.FreeHGlobal (pNativeArr);
+		//}
 	}
 }

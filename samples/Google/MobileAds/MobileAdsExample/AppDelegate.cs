@@ -48,6 +48,14 @@ namespace MobileAdsExample
 		{
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
 
+			Google.MobileAds.MobileAds.SharedInstance.Start (null);
+			Google.MobileAds.MobileAds.SharedInstance.RequestConfiguration.TestDeviceIdentifiers = new []
+			{
+				"707fac496fc5f59526eaa5590d0c2b2e",
+				"abc4721a4e9d1537655ec0c730a49e28",
+				Google.MobileAds.Request.SimulatorId
+			};
+
 			var root = new RootElement ("GoogleAdmobSample") {
 				new Section ("Insert Ad") {
 					new StringElement ("Banner on TableView", AddToTableView),

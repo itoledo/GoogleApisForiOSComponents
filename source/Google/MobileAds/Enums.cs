@@ -26,16 +26,16 @@ namespace Google.MobileAds
 		NativeContent,
 
 		// extern NSString *const kGADAdLoaderAdTypeNativeCustomTemplate;
-		[Field ("kGADAdLoaderAdTypeNativeCustomTemplate", "__Internal")]
-		NativeCustomTemplate,
+		//[Field ("kGADAdLoaderAdTypeNativeCustomTemplate", "__Internal")]
+		//NativeCustomTemplate,
 
 		// extern NSString *const kGADAdLoaderAdTypeDFPBanner;
-		[Field ("kGADAdLoaderAdTypeDFPBanner", "__Internal")]
-		DfpBanner,
+		//[Field ("kGADAdLoaderAdTypeDFPBanner", "__Internal")]
+		//DfpBanner,
 
 		// AD_EXTERN GADAdLoaderAdType const kGADAdLoaderAdTypeUnifiedNative;
-		[Field ("kGADAdLoaderAdTypeUnifiedNative", "__Internal")]
-		UnifiedNative
+		//[Field ("kGADAdLoaderAdTypeUnifiedNative", "__Internal")]
+		//UnifiedNative
 	}
 
 	[Native]
