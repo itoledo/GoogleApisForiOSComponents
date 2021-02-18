@@ -263,13 +263,13 @@ namespace Google.MobileAds {
 
 		[EventArgs ("BannerViewE")]
 		[EventName ("AdReceived")]
-		[Export ("adViewDidReceiveAd:")]
+		[Export ("bannerViewDidReceiveAd:")]
 		void DidReceiveAd (BannerView view);
 
-		//[EventArgs ("BannerViewError")]
-		//[EventName ("ReceiveAdFailed")]
-		//[Export ("adView:didFailToReceiveAdWithError:")]
-		//void DidFailToReceiveAd (BannerView view, RequestError error);
+		[EventArgs ("BannerViewError")]
+		[EventName ("ReceiveAdFailed")]
+		[Export ("bannerView:didFailToReceiveAdWithError:")]
+		void DidFailToReceiveAd (BannerView view, NSError error);
 
 		[EventArgs ("BannerViewE")]
 		[EventName ("ImpressionRecorded")]
@@ -277,21 +277,21 @@ namespace Google.MobileAds {
 		void DidRecordImpression (BannerView view);
 
 		[EventArgs ("BannerViewE")]
-		[Export ("adViewWillPresentScreen:")]
+		[Export ("bannerViewWillPresentScreen:")]
 		void WillPresentScreen (BannerView adView);
 
 		[EventArgs ("BannerViewE")]
-		[Export ("adViewWillDismissScreen:")]
+		[Export ("bannerViewWillDismissScreen:")]
 		void WillDismissScreen (BannerView adView);
 
 		[EventArgs ("BannerViewE")]
 		[EventName ("ScreenDismissed")]
-		[Export ("adViewDidDismissScreen:")]
+		[Export ("bannerViewDidDismissScreen:")]
 		void DidDismissScreen (BannerView adView);
 
-		[EventArgs ("BannerViewE")]
-		[Export ("adViewWillLeaveApplication:")]
-		void WillLeaveApplication (BannerView adView);
+		// [EventArgs ("BannerViewE")]
+		// [Export ("adViewWillLeaveApplication:")]
+		// void WillLeaveApplication (BannerView adView);
 	}
 
 	[BaseType (typeof (NSObject), Name = "GADExtras")]
