@@ -17,8 +17,7 @@ namespace MobileAdsExample
 	// User Interface of the application, as well as listening (and optionally responding) to
 	// application events from iOS.
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate, IFullScreenContentDelegate {
 		// class-level declarations
 		UIWindow window;
 		UINavigationController navController;
@@ -60,7 +59,8 @@ namespace MobileAdsExample
 				new Section ("Insert Ad") {
 					new StringElement ("Banner on TableView", AddToTableView),
 					new StringElement ("Banner on Window", AddToWindow),
-					new StringElement ("Interstitial on Window", AddToView)
+					new StringElement ("Interstitial on Window", AddToView),
+					new StringElement ("App Open Ad", AddAppOpenAd)
 				},
 				new Section ("Remove Ad") {
 					new StringElement ("from TableView", RemoveAdFromTableView),
@@ -75,6 +75,11 @@ namespace MobileAdsExample
 			window.MakeKeyAndVisible ();
 
 			return true;
+		}
+
+		void AddAppOpenAd ()
+		{
+			AppOpenAd.Load ("ca-app-pub-3940256099942544/5662855259", Request.GetDefaultRequest (), UIInterfaceOrientation.Portrait, AppOpenAdLoadCompletionHandler);
 		}
 
 		void AddToTableView ()
@@ -120,7 +125,7 @@ namespace MobileAdsExample
 			if (adViewWindow == null) {
 
 				// Setup your GADBannerView, review AdSizeCons class for more Ad sizes. 
-				adViewWindow = new BannerView (size: AdSizeCons.Banner, 
+				adViewWindow = new BannerView (size: AdSizeCons.Banner,
 					origin: new CGPoint (0, window.Bounds.Size.Height - AdSizeCons.Banner.Size.Height)) {
 					AdUnitID = bannerId,
 					RootViewController = navController
@@ -161,8 +166,8 @@ namespace MobileAdsExample
 
 			if (adInterstitial == null) {
 				adInterstitial = new Interstitial (intersitialId);
-						
-				adInterstitial.ScreenDismissed += (sender, e) => { 
+
+				adInterstitial.ScreenDismissed += (sender, e) => {
 					interstitialRequested = false;
 
 					// You need to explicitly Dispose Interstitial when you dont need it anymore
@@ -189,6 +194,31 @@ namespace MobileAdsExample
 			InvokeOnMainThread (() => adInterstitial.PresentFromRootViewController (navController));
 		}
 
+		public void AppOpenAdLoadCompletionHandler (AppOpenAd ad, NSError error) {
+			if (error != null) {
+				System.Diagnostics.Debug.WriteLine ($"error: {error}");
+			} else {
+				ad.Delegate = new MyFullScreenContentDelegate();
+				InvokeOnMainThread (() => ad.PresentFromRootViewController (navController));
+			}
+		}
+
+		public class MyFullScreenContentDelegate : FullScreenContentDelegate {
+			public override void DidFailToPresentFullScreenContent (FullScreenPresentingAd ad, NSError error)
+			{
+				System.Diagnostics.Debug.WriteLine ($"DidFailToPresentFullScreenContent");
+			}
+
+			public override void DidPresentFullScreenContent (FullScreenPresentingAd ad)
+			{
+				System.Diagnostics.Debug.WriteLine ($"DidPresentFullScreenContent");
+			}
+
+			public override void DidDismissFullScreenContent (FullScreenPresentingAd ad)
+			{
+				System.Diagnostics.Debug.WriteLine ($"DidDismissFullScreenContent");
+			}
+		}
 	}
 }
 
