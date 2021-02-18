@@ -27,9 +27,9 @@ namespace Google.MobileAds
 		}
 	}
 
-	public partial class NativeCustomTemplateAd
+	public partial class CustomNativeAd
 	{
-		//public static string MediaViewKey { get; } = _MediaViewKey.ToString ();
+		public static string MediaViewKey { get; } = _MediaViewKey.ToString ();
 	}
 
 	public partial class Request

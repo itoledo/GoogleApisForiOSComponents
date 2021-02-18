@@ -402,9 +402,9 @@ namespace Google.MobileAds {
 		[Export ("interstitialDidDismissScreen:")]
 		void DidDismissScreen (Interstitial ad);
 
-		[EventArgs ("InterstitialE")]
-		[Export ("interstitialWillLeaveApplication:")]
-		void WillLeaveApplication (Interstitial ad);
+		// [EventArgs ("InterstitialE")]
+		// [Export ("interstitialWillLeaveApplication:")]
+		// void WillLeaveApplication (Interstitial ad);
 	}
 
 	// @interface GADMediaContent : NSObject
@@ -1367,9 +1367,9 @@ namespace Google.MobileAds {
 		void DidDismissScreen (NativeAd nativeAd);
 
 		// @optional -(void)nativeAdWillLeaveApplication:(GADUnifiedNativeAd * _Nonnull)nativeAd;
-		[EventArgs ("NativeAd")]
-		[Export ("nativeAdWillLeaveApplication:")]
-		void WillLeaveApplication (NativeAd nativeAd);
+		// [EventArgs ("NativeAd")]
+		// [Export ("nativeAdWillLeaveApplication:")]
+		// void WillLeaveApplication (NativeAd nativeAd);
 
 		// @optional -(void)nativeAdIsMuted:(GADUnifiedNativeAd *)nativeAd;
 		[EventArgs ("NativeAd")]
@@ -1701,67 +1701,68 @@ namespace Google.MobileAds {
 	// typedef void (^GADNativeAdCustomClickHandler)(NSString* assetID);
 	delegate void NativeAdCustomClickHandle (string assetId);
 
-	// @interface GADNativeCustomTemplateAd : GADNativeAd
-	//[BaseType (typeof (NativeAd), Name = "GADNativeCustomTemplateAd")]
-	//interface NativeCustomTemplateAd {
-	//	// extern NSString *const GADNativeCustomTemplateAdMediaViewKey;
-	//	// [Internal]
-	//	// NSString _MediaViewKey { get; }
+	// @interface GADCustomNativeAd : GADNativeAd
+	[BaseType (typeof (NativeAd), Name = "GADCustomNativeAd")]
+	interface CustomNativeAd {
+		// extern NSString *const GADNativeCustomTemplateAdMediaViewKey;
+		[Internal]
+		[Field ("GADCustomNativeAdMediaViewKey", "__Internal")]
+		NSString _MediaViewKey { get; }
 
-	//	// @property (readonly, nonatomic) NSString * templateID;
-	//	[Export ("templateID")]
-	//	string TemplateId { get; }
+		// @property (readonly, nonatomic) NSString * templateID;
+		[Export ("templateID")]
+		string TemplateId { get; }
 
-	//	[Obsolete ("Use the TemplateId property instead. This will be removed in future versions.")]
-	//	[Wrap ("TemplateId")]
-	//	string TemplateID { get; }
+		[Obsolete ("Use the TemplateId property instead. This will be removed in future versions.")]
+		[Wrap ("TemplateId")]
+		string TemplateID { get; }
 
-	//	// @property (readonly, nonatomic) NSArray * availableAssetKeys;
-	//	[Export ("availableAssetKeys")]
-	//	string [] AvailableAssetKeys { get; }
+		// @property (readonly, nonatomic) NSArray * availableAssetKeys;
+		[Export ("availableAssetKeys")]
+		string [] AvailableAssetKeys { get; }
 
-	//	// @property(nonatomic, readonly, strong) GADVideoController *videoController;
-	//	[Export ("videoController")]
-	//	VideoController VideoController { get; }
+		// @property(nonatomic, readonly, strong) GADVideoController *videoController;
+		[Export ("videoController")]
+		VideoController VideoController { get; }
 
-	//	// @property(nonatomic, readonly, strong, GAD_NULLABLE) GADMediaView *mediaView;
-	//	[NullAllowed]
-	//	[Export ("mediaView")]
-	//	MediaView MediaView { get; }
+		// @property(nonatomic, readonly, strong, GAD_NULLABLE) GADMediaView *mediaView;
+		[NullAllowed]
+		[Export ("mediaView")]
+		MediaView MediaView { get; }
 
-	//	// @property(atomic, copy) GADNativeAdCustomClickHandler customClickHandler;
-	//	[NullAllowed]
-	//	[Export ("customClickHandler", ArgumentSemantic.Copy)]
-	//	NativeAdCustomClickHandle CustomClickHandler { get; }
+		// @property(atomic, copy) GADNativeAdCustomClickHandler customClickHandler;
+		[NullAllowed]
+		[Export ("customClickHandler", ArgumentSemantic.Copy)]
+		NativeAdCustomClickHandle CustomClickHandler { get; }
 
-	//	// @property (readonly, nonatomic) GADDisplayAdMeasurement * _Nullable displayAdMeasurement;
-	//	[NullAllowed]
-	//	[Export ("displayAdMeasurement")]
-	//	DisplayAdMeasurement DisplayAdMeasurement { get; }
+		// @property (readonly, nonatomic) GADDisplayAdMeasurement * _Nullable displayAdMeasurement;
+		[NullAllowed]
+		[Export ("displayAdMeasurement")]
+		DisplayAdMeasurement DisplayAdMeasurement { get; }
 
-	//	// -(GADNativeAdImage *)imageForKey:(NSString *)key;
-	//	[return: NullAllowed]
-	//	[Export ("imageForKey:")]
-	//	NativeAdImage ImageForKey (string key);
+		// -(GADNativeAdImage *)imageForKey:(NSString *)key;
+		[return: NullAllowed]
+		[Export ("imageForKey:")]
+		NativeAdImage ImageForKey (string key);
 
-	//	// -(NSString *)stringForKey:(NSString *)key;
-	//	[return: NullAllowed]
-	//	[Export ("stringForKey:")]
-	//	string StringForKey (string key);
+		// -(NSString *)stringForKey:(NSString *)key;
+		[return: NullAllowed]
+		[Export ("stringForKey:")]
+		string StringForKey (string key);
 
-	//	// - (void)performClickOnAssetWithKey:(NSString *)assetKey;
-	//	[Export ("performClickOnAssetWithKey:")]
-	//	void PerformClickOnAssetWithKey (string assetKey);
+		// - (void)performClickOnAssetWithKey:(NSString *)assetKey;
+		[Export ("performClickOnAssetWithKey:")]
+		void PerformClickOnAssetWithKey (string assetKey);
 
-	//	// - (void)recordImpression;
-	//	[Export ("recordImpression")]
-	//	void RecordImpression ();
+		// - (void)recordImpression;
+		[Export ("recordImpression")]
+		void RecordImpression ();
 
-	//	// -(void)performClickOnAssetWithKey:(NSString *)assetKey customClickHandler:(dispatch_block_t)customClickHandler;
-	//	[Obsolete ("Use PerformClickOnAssetWithKey (string) method instead.")]
-	//	[Export ("performClickOnAssetWithKey:customClickHandler:")]
-	//	void PerformClickOnAssetWithKey (string assetKey, [NullAllowed] Action customClickHandler);
-	//}
+		// -(void)performClickOnAssetWithKey:(NSString *)assetKey customClickHandler:(dispatch_block_t)customClickHandler;
+		[Obsolete ("Use PerformClickOnAssetWithKey (string) method instead.")]
+		[Export ("performClickOnAssetWithKey:customClickHandler:")]
+		void PerformClickOnAssetWithKey (string assetKey, [NullAllowed] Action customClickHandler);
+	}
 
 	// @interface GADNativeExpressAdView : UIView
 	[Obsolete]
@@ -1864,27 +1865,27 @@ namespace Google.MobileAds {
 		void DidDismissScreen (NativeExpressAdView nativeExpressAdView);
 
 		// @optional -(void)nativeExpressAdViewWillLeaveApplication:(GADNativeExpressAdView *)nativeExpressAdView;
-		[EventArgs ("NativeExpressAdView")]
-		[Export ("nativeExpressAdViewWillLeaveApplication:")]
-		void WillLeaveApplication (NativeExpressAdView nativeExpressAdView);
+		// [EventArgs ("NativeExpressAdView")]
+		// [Export ("nativeExpressAdViewWillLeaveApplication:")]
+		// void WillLeaveApplication (NativeExpressAdView nativeExpressAdView);
 	}
 
-	interface INativeCustomTemplateAdLoaderDelegate {
+	interface ICustomNativeAdLoaderDelegate {
 	}
 
 	[Model (AutoGeneratedName = true)]
 	[Protocol]
-	[BaseType (typeof (NSObject), Name = "GADNativeCustomTemplateAdLoaderDelegate")]
-	interface NativeCustomTemplateAdLoaderDelegate : AdLoaderDelegate {
+	[BaseType (typeof (NSObject), Name = "GADCustomNativeAdLoaderDelegate")]
+	interface CustomNativeAdLoaderDelegate : AdLoaderDelegate {
 		// @required -(NSArray *)nativeCustomTemplateIDsForAdLoader:(GADAdLoader *)adLoader;
 		[Abstract]
-		[Export ("nativeCustomTemplateIDsForAdLoader:")]
-		string [] NativeCustomTemplateIDs (AdLoader adLoader);
+		[Export ("customNativeIDsForAdLoader:")]
+		string [] CustomNativeIDs (AdLoader adLoader);
 
 		// @required -(void)adLoader:(GADAdLoader *)adLoader didReceiveNativeCustomTemplateAd:(GADNativeCustomTemplateAd *)nativeCustomTemplateAd;
-		//[Abstract]
-		//[Export ("adLoader:didReceiveNativeCustomTemplateAd:")]
-		//void DidReceiveNativeCustomTemplateAd (AdLoader adLoader, NativeCustomTemplateAd nativeCustomTemplateAd);
+		[Abstract]
+		[Export ("adLoader:didReceiveCustomNativeAd:")]
+		void DidReceiveCustomNativeAd (AdLoader adLoader, CustomNativeAd customNativeAd);
 	}
 
 	#endregion
@@ -1979,9 +1980,9 @@ namespace Google.MobileAds {
 		[Export ("customEventBannerDidDismissModal:")]
 		void DidDismissModal (ICustomEventBanner customEvent);
 
-		[Abstract]
-		[Export ("customEventBannerWillLeaveApplication:")]
-		void WillLeaveApplication (ICustomEventBanner customEvent);
+		// [Abstract]
+		// [Export ("customEventBannerWillLeaveApplication:")]
+		// void WillLeaveApplication (ICustomEventBanner customEvent);
 	}
 
 	[BaseType (typeof (NSObject), Name = "GADCustomEventExtras")]
@@ -2054,8 +2055,8 @@ namespace Google.MobileAds {
 		[Export ("customEventInterstitialDidDismiss:")]
 		void DidDismiss (ICustomEventInterstitial customEvent);
 
-		[Export ("customEventInterstitialWillLeaveApplication:")]
-		void WillLeaveApplication (ICustomEventInterstitial customEvent);
+		// [Export ("customEventInterstitialWillLeaveApplication:")]
+		// void WillLeaveApplication (ICustomEventInterstitial customEvent);
 	}
 
 	interface ICustomEventNativeAd {
